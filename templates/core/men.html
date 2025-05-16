@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -8,32 +10,28 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
 	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Ion Icon Fonts-->
-	<link rel="stylesheet" href="css/ionicons.min.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
 
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
-
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
-
-	<!-- Owl Carousel -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	
-	<!-- Date Picker -->
-	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-	<!-- Flaticons  -->
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+<!-- Animate.css -->
+<link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="{% static 'assets/css/icomoon.css' %}">
+<!-- Ion Icon Fonts-->
+<link rel="stylesheet" href="{% static 'assets/css/ionicons.min.css' %}">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+<!-- Flexslider -->
+<link rel="stylesheet" href="{% static 'assets/css/flexslider.css' %}">
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+<!-- Date Picker -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap-datepicker.css' %}">
+<!-- Flaticons -->
+<link rel="stylesheet" href=" {% static 'assets/fonts/flaticon/font/flaticon.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
 	</head>
 	<body>
@@ -46,7 +44,8 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-7 col-md-9">
-							<div id="colorlib-logo"><a href="index.html">Footwear</a></div>
+							<div id="colorlib-logo"><a href="index.html"><b>𝙈𝙚𝙣'𝙨 𝙁𝙤𝙤𝙩𝙬𝙚𝙖𝙧</b>
+							</a></div>
 						</div>
 						<div class="col-sm-5 col-md-3">
 			            <form action="#" class="search-wrap">
@@ -60,9 +59,9 @@
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
-								<li><a href="index.html">Home</a></li>
+								<li><a href="index.html">Ｈｏｍｅ</a></li>
 								<li class="has-dropdown active">
-									<a href="men.html">Men</a>
+									<a href="men.html">Ｍｅｎ</a>
 									<ul class="dropdown">
 										<li><a href="product-detail.html">Product Detail</a></li>
 										<li><a href="cart.html">Shopping Cart</a></li>
@@ -71,10 +70,10 @@
 										<li><a href="add-to-wishlist.html">Wishlist</a></li>
 									</ul>
 								</li>
-								<li><a href="women.html">Women</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li><a href="women.html">Ｗｏｍｅｎ</a></li>
+								<li><a href="about.html">Ａｂｏｕｔ</a></li>
+								<li><a href="contact.html">Ｃｏｎｔａｃｔ</a></li>
+								<li class="cart"><a href="cart.html">Wishlist |<i class="icon-shopping-cart"></i> Cart [0]</a></li>
 							</ul>
 						</div>
 					</div>
@@ -118,7 +117,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<div class="breadcrumbs-img" style="background-image: url(images/cover-img-1.jpg);">
+						<div class="breadcrumbs-img" style="background-image: url('{% static 'assets/images/cover-img-1.jpg' %}');">
 							<h2>Men's</h2>
 						</div>
 						<div class="menu text-center">
@@ -134,7 +133,7 @@
 				<div class="row">
 					<div class="col-sm-4 text-center">
 						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url(images/men.jpg);">
+							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/men.jpg' %}');">
 								<h2>Casuals</h2>
 								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
 							</div>
@@ -142,7 +141,7 @@
 					</div>
 					<div class="col-sm-4 text-center">
 						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url(images/women.jpg);">
+							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/women.jpg' %}');;">
 								<h2>Dress</h2>
 								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
 							</div>
@@ -150,7 +149,7 @@
 					</div>
 					<div class="col-sm-4 text-center">
 						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url(images/item-11.jpg);">
+							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/item-11.jpg' %}');">
 								<h2>Sports</h2>
 								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
 							</div>
@@ -171,7 +170,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-1.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -182,7 +181,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Minam Meaghan</a></h2>
@@ -193,7 +192,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-3.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Men's Taja Commissioner</a></h2>
@@ -204,7 +203,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-4.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Russ Men's Sneakers</a></h2>
@@ -216,7 +215,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-5.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-5.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -227,7 +226,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-6.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-6.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -238,7 +237,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-7.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-7.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -249,52 +248,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-8.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="w-100"></div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="images/item-9.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="images/item-10.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="images/item-11.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="images/item-12.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-8.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -306,7 +260,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-13.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-9.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -317,7 +271,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-14.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-10.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -328,7 +282,7 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-15.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-11.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -339,7 +293,52 @@
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
 							<a href="#" class="prod-img">
-								<img src="images/item-16.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								<img src="{% static 'assets/images/item-12.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							</a>
+							<div class="desc">
+								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+								<span class="price">$139.00</span>
+							</div>
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<div class="col-md-3 col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+							<a href="#" class="prod-img">
+								<img src="{% static 'assets/images/item-13.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							</a>
+							<div class="desc">
+								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+								<span class="price">$139.00</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+							<a href="#" class="prod-img">
+								<img src="{% static 'assets/images/item-14.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							</a>
+							<div class="desc">
+								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+								<span class="price">$139.00</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+							<a href="#" class="prod-img">
+								<img src="{% static 'assets/images/item-15.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							</a>
+							<div class="desc">
+								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+								<span class="price">$139.00</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+							<a href="#" class="prod-img">
+								<img src="{% static 'assets/images/item-16.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
@@ -375,24 +374,24 @@
 				</div>
 				<div class="row">
 					<div class="col partner-col text-center">
-						<img src="images/brand-1.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+						<img src="{% static 'assets/images/brand-1.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
 					</div>
 					<div class="col partner-col text-center">
-						<img src="images/brand-2.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+						<img src="{% static 'assets/images/brand-2.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
 					</div>
 					<div class="col partner-col text-center">
-						<img src="images/brand-3.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+						<img src="{% static 'assets/images/brand-3.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">                                                                                                                                
+						<img src="{% static 'assets/images/brand-4.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
 					</div>
 					<div class="col partner-col text-center">
-						<img src="images/brand-4.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
-					</div>
-					<div class="col partner-col text-center">
-						<img src="images/brand-5.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+						<img src="{% static 'assets/images/brand-5.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
 					</div>
 				</div>
 			</div>
 		</div>
-
+ 
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
 				<div class="row row-pb-md">
@@ -457,14 +456,7 @@
 			</div>
 			<div class="copy">
 				<div class="row">
-					<div class="col-sm-12 text-center">
-						<p>
-							<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
-							<span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
-						</p>
-					</div>
+					
 				</div>
 			</div>
 		</footer>
@@ -474,29 +466,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
 	</div>
 	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-   <!-- popper -->
-   <script src="js/popper.min.js"></script>
-   <!-- bootstrap 4.1 -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- jQuery easing -->
-   <script src="js/jquery.easing.1.3.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Main -->
-	<script src="js/main.js"></script>
+<!-- jQuery -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<!-- popper -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<!-- bootstrap 4.1 -->
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+<!-- jQuery easing -->
+<script src="{% static 'assets/js/jquery.easing.1.3.js' %}"></script>
+
+<!-- Waypoints -->
+<script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+<!-- Flexslider -->
+<script src="{% static 'assets/js/jquery.flexslider-min.js' %}"></script>
+<!-- Owl carousel -->
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<!-- Magnific Popup -->
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'assets/js/magnific-popup-options.js' %}"></script>
+<!-- Date Picker -->
+<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+<!-- Stellar Parallax -->
+<script src="{% static 'assets/js/jquery.Stellar.min.js' %}"></script>
+<!-- Main -->
+<script src="{% static 'assets/js/main.js' %}"></script>
 
 	</body>
 </html>

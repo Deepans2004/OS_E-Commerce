@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index(request):
+def index_view(request):
     return render(request, 'core/index.html')
+
+def men_view(request):
+    return render(request, 'core/men.html')
 
 def about_view(request):
     return render(request, 'core/about.html')

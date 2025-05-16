@@ -16,14 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
 from django.conf import settings
 from django.conf.urls.static import static
+from core import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("" , include("core.urls"))
-    
+    path("admin/", admin.site.urls),
+    path("", views.index_view, name='home'),  # root URL mapped directly
+    path("index/", views.index_view, name='home'),
+    path("men/", views.men_view, name='men'),
+    path("about/", views.about_view, name='about'),
+    path("contact/", views.contact_view, name='contact'),
 ]
 
 if settings.DEBUG:
