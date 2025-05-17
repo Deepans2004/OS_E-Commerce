@@ -204,6 +204,8 @@ button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color; }
 
+  
+
 input,
 button,
 select,
@@ -7654,6 +7656,11 @@ h1, h2, h3, h4, h5,
   .breadcrumbs-img h2 {
     font-size: 40px;
     text-transform: uppercase; }
+
+
+.part{
+  color: #000000;
+}
 
 .menu {
   background: #616161;

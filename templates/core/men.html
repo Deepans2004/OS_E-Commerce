@@ -3,7 +3,244 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<title>Footwear - Free Bootstrap 4 Template by Colorlib</title>
+
+
+		<style>.prod-img {
+			position: relative; /* ensure badge is positioned relative to image container */
+			display: block; /* to contain the image and badge properly */
+		  }
+		  
+		  .sale-badge {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			background: rgba(255, 0, 0, 0.85); /* bright red with some transparency */
+			color: white;
+			font-weight: 900;
+			font-size: 1.8rem; /* big text */
+			text-align: center;
+			padding: 8px 0;
+			letter-spacing: 3px;
+			z-index: 10;
+			font-family: Arial, sans-serif;
+			text-transform: uppercase;
+		  }
+
+		  .featured-img {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Hover effect: Zoom + dull (reduce brightness) */
+.featured-img:hover {
+    transform: scale(1.1);
+    filter: brightness(70%) contrast(90%);
+}
+
+.featured-img h2,
+.featured-img p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: white;
+    text-align: center;
+}
+.fullscreen-banner {
+    position: relative;
+    width: 100%;
+    height: 75vh; /* reduced height */
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 60px; /* added space below */
+}
+
+/* Background Image */
+.fullscreen-banner .banner-img {
+    width: 100%;
+    height: 100%;
+    background-image: url('{% static "assets/images/cover-img-1.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(100%) contrast(100%);
+    transition: filter 1.2s ease; /* slower transition */
+}
+
+/* Hover overlay */
+.fullscreen-banner .banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4); /* subtle dark overlay */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    text-align: center;
+    padding: 20px;
+}
+
+.fullscreen-banner:hover .banner-overlay {
+    opacity: 1;
+}
+
+.fullscreen-banner:hover .banner-img {
+    filter: brightness(70%) contrast(85%);
+}
+
+/* Heading text */
+.banner-overlay h2 {
+    font-size: 2.8rem;
+    margin: 5px 0;
+    color: white;
+    font-weight: bold;
+}
+
+/* Action buttons */
+.banner-overlay a {
+    display: inline-block;
+    margin: 8px;
+    padding: 12px 25px;
+    background-color: rgba(255, 255, 255, 0.9); /* slightly transparent white */
+    color: black;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.banner-overlay a:hover {
+    background-color: white;
+    transform: scale(1.05);
+}
+
+/* Centered large dot indicator */
+.dot-indicator {
+    position: absolute;
+    bottom: 500px;
+    left: 48.5%;
+    transform: translateX(-50%);
+    width:30px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    opacity: 0.85;
+    animation: pulse 0.4s infinite;
+}
+
+
+@keyframes pulse {
+    0% { transform: translateX(-50%) scale(10); opacity: 1; }
+    50% { transform: translateX(-50%) scale(1300); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+}
+
+/* Container for product image link */
+.prod-img {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* The image itself */
+.prod-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: filter 0.4s ease; /* smooth transition for dull effect */
+}
+
+/* Overlay button container */
+.prod-img::after {
+  content: "Shop Now";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(33, 159, 5, 0.85);
+  color: #000000;
+  padding: 8px 18px;
+  font-weight: 400;
+  border-radius: 25px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* On hover, dull the image and show the overlay */
+.prod-img:hover img {
+  filter: brightness(65%);
+  /* transform: scale(1.1); */
+}
+
+.prod-img:hover::after {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Optional: Make the cursor pointer on overlay as well */
+.prod-img:hover {
+  cursor: pointer;
+}
+
+.partner-col img {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.partner-col img:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.user-circle-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  padding-left: 10px;
+  margin-top: 8px;
+}
+
+.user-circle-link {
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 50%;
+}
+
+.user-circle-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-circle-img {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  transition: border 0.3s ease;
+}
+
+.user-circle-img:hover {
+  border-color: #888;
+}
+
+		  </style>
+	<title>Shop-Sneekpeek</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -40,15 +277,21 @@
 
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
+			<li class="user-circle-wrapper">
+				<a href="#" class="user-circle-link">
+					<img src="{% static 'assets/images/user.jpg' %}" alt="User" class="user-circle-img">
+				</a>
+			</li>
+			
 			<div class="top-menu">
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-7 col-md-9">
-							<div id="colorlib-logo"><a href="index.html"><b>𝙈𝙚𝙣'𝙨 𝙁𝙤𝙤𝙩𝙬𝙚𝙖𝙧</b>
+							<div id="colorlib-logo"><a href="{% url 'index' %}"><b>𝙎𝙝𝙤𝙥 𝙁𝙤𝙤𝙩𝙬𝙚𝙖𝙧 	</b>
 							</a></div>
 						</div>
 						<div class="col-sm-5 col-md-3">
-			            <form action="#" class="search-wrap">
+			            <form action="{% url 'men' %}#new-list" class="search-wrap">
 			               <div class="form-group">
 			                  <input type="search" class="form-control search" placeholder="Search">
 			                  <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
@@ -59,21 +302,20 @@
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
-								<li><a href="index.html">Ｈｏｍｅ</a></li>
+								<li><a href="{% url 'index' %}">Ｈｏｍｅ</a></li>
 								<li class="has-dropdown active">
-									<a href="men.html">Ｍｅｎ</a>
+									<a href="{% url 'men' %}">Ｓｈｏｐ</a>
 									<ul class="dropdown">
-										<li><a href="product-detail.html">Product Detail</a></li>
-										<li><a href="cart.html">Shopping Cart</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="order-complete.html">Order Complete</a></li>
-										<li><a href="add-to-wishlist.html">Wishlist</a></li>
+										<li><a href="{% url 'product-detail' %}">Product Detail</a></li>
+										<li><a href="{% url 'cart' %}">Shopping Cart</a></li>
+										<li><a href="{% url 'checkout' %}">Checkout</a></li>
+										<li><a href="{% url 'order-complete' %}">Order Complete</a></li>
+										<li><a href="{% url 'add-to-wishlist' %}">Wishlist</a></li>
 									</ul>
 								</li>
-								<li><a href="women.html">Ｗｏｍｅｎ</a></li>
-								<li><a href="about.html">Ａｂｏｕｔ</a></li>
-								<li><a href="contact.html">Ｃｏｎｔａｃｔ</a></li>
-								<li class="cart"><a href="cart.html">Wishlist |<i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li><a href="{% url 'about' %}">Ａｂｏｕｔ</a></li>
+								<li><a href="{% url 'contact' %}">Ｃｏｎｔａｃｔ</a></li>
+								<li class="cart"><a href="{% url 'cart' %}">Wishlist |<i class="icon-shopping-cart"></i> Cart [0]</a></li>
 							</ul>
 						</div>
 					</div>
@@ -87,12 +329,12 @@
 								<div class="owl-carousel2">
 									<div class="item">
 										<div class="col">
-											<h3><a href="#">25% off (Almost) Everything! Use Code: Summer Sale</a></h3>
+											<h3><a href="{% url 'men' %}#salle">25% off (Almost) Everything! Use Code: Summer Sale</a></h3>
 										</div>
 									</div>
 									<div class="item">
 										<div class="col">
-											<h3><a href="#">Our biggest sale yet 50% off all summer shoes</a></h3>
+											<h3><a href="{% url 'men' %}#salle">Our biggest sale yet 50% off all summer shoes</a></h3>
 										</div>
 									</div>
 								</div>
@@ -107,25 +349,28 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Men</span></p>
+						<p class="bread"><span><a href="{% url 'index' %}">Home</a></span> / <span>Shop</span></p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="breadcrumbs-two">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="breadcrumbs-img" style="background-image: url('{% static 'assets/images/cover-img-1.jpg' %}');">
-							<h2>Men's</h2>
-						</div>
-						<div class="menu text-center">
-							<p><a href="#">New Arrivals</a> <a href="#">Best Sellers</a> <a href="#">Extended Widths</a> <a href="#">Sale</a></p>
-						</div>
-					</div>
-				</div>
+
+
+
+		<div class="fullscreen-banner">
+			<div class="banner-img"></div>
+			<div class="banner-overlay">
+				<h2>🇹​🇷​🇪​🇳​🇩​🇾​ 🇸​🇭​🇴​🇪​🇸​</h2>
+				<h2>🇸​🇭​🇴​🇵​ 🇭​🇪​🇷​🇪​!!!</h2>
+				<!-- <div class="menu text-center"> -->
+					<a href="{% url 'men' %}#new-list">New Arrivals</a>
+					<a href="{% url 'men' %}#new-list">Best Sellers</a>
+					<a href="{% url 'men' %}#new-list">Extended Widths</a>
+					<a href="{% url 'men' %}#salle">Sale</a>
+				<!-- </div> -->
 			</div>
+			<div class="dot-indicator"></div>
 		</div>
 
 		<div class="colorlib-featured">
@@ -135,7 +380,7 @@
 						<div class="featured">
 							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/men.jpg' %}');">
 								<h2>Casuals</h2>
-								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
+								<p><a href="{% url 'men' %}#new-list" class="btn btn-primary btn-lg">Shop now</a></p>
 							</div>
 						</div>
 					</div>
@@ -143,7 +388,7 @@
 						<div class="featured">
 							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/women.jpg' %}');;">
 								<h2>Dress</h2>
-								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
+								<p><a href="{% url 'men' %}#new-list" class="btn btn-primary btn-lg">Shop now</a></p>
 							</div>
 						</div>
 					</div>
@@ -151,7 +396,7 @@
 						<div class="featured">
 							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/item-11.jpg' %}');">
 								<h2>Sports</h2>
-								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
+								<p><a href="{% url 'men' %}#new-list" class="btn btn-primary btn-lg">Shop now</a></p>
 							</div>
 						</div>
 					</div>
@@ -166,37 +411,37 @@
 						<h2>View All Products</h2>
 					</div>
 				</div>
-				<div class="row row-pb-md">
+				<div class="row row-pb-md"  id="new-list">
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
-							<a href="#" class="prod-img">
+							<a href="{% url 'men' %}#new-list" class="prod-img">
 								<img src="{% static 'assets/images/item-1.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Women's leath-made shoes</a></h2>
+								<span class="price">₹4999.00</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
-							<a href="#" class="prod-img">
+							<a href="{% url 'men' %}#new-list" class="prod-img">
 								<img src="{% static 'assets/images/item-2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Women's Minam Meaghan</a></h2>
-								<span class="price">$139.00</span>
+								<span class="price">₹1399.00</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
-							<a href="#" class="prod-img">
+							<a href="{% url 'men' %}#new-list" class="prod-img">
 								<img src="{% static 'assets/images/item-3.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="#">Men's Taja Commissioner</a></h2>
-								<span class="price">$139.00</span>
+								<span class="price">₹1899.00</span>
 							</div>
 						</div>
 					</div>
@@ -207,7 +452,7 @@
 							</a>
 							<div class="desc">
 								<h2><a href="#">Russ Men's Sneakers</a></h2>
-								<span class="price">$139.00</span>
+								<span class="price">₹1299.00</span>
 							</div>
 						</div>
 					</div>
@@ -218,8 +463,8 @@
 								<img src="{% static 'assets/images/item-5.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Women's high heels</a></h2>
+								<span class="price">₹1499.00</span>
 							</div>
 						</div>
 					</div>
@@ -229,8 +474,8 @@
 								<img src="{% static 'assets/images/item-6.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">DQ 1000 sports</a></h2>
+								<span class="price">₹2299.00</span>
 							</div>
 						</div>
 					</div>
@@ -240,8 +485,8 @@
 								<img src="{% static 'assets/images/item-7.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Leather Class</a></h2>
+								<span class="price">₹2899.00</span>
 							</div>
 						</div>
 					</div>
@@ -251,8 +496,8 @@
 								<img src="{% static 'assets/images/item-8.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Top Leather Class</a></h2>
+								<span class="price">₹2899.00</span>
 							</div>
 						</div>
 					</div>
@@ -263,8 +508,8 @@
 								<img src="{% static 'assets/images/item-9.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Merrell vento</a></h2>
+								<span class="price">₹3099.00</span>
 							</div>
 						</div>
 					</div>
@@ -274,8 +519,8 @@
 								<img src="{% static 'assets/images/item-10.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Women's Step UP</a></h2>
+								<span class="price">₹2499.00</span>
 							</div>
 						</div>
 					</div>
@@ -285,8 +530,8 @@
 								<img src="{% static 'assets/images/item-11.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Jordan 1 Retro High OG</a></h2>
+								<span class="price">₹10999.00</span>
 							</div>
 						</div>
 					</div>
@@ -296,53 +541,67 @@
 								<img src="{% static 'assets/images/item-12.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+								<h2><a href="#">Nike jumper Sport -Dark Edition</a></h2>
+								<span class="price">₹7999.00</span>
 							</div>
 						</div>
 					</div>
+					
+
+
+
+
 					<div class="w-100"></div>
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-13.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+						<div class="product-entry border" id="salle">
+							<a href="#" class="prod-img position-relative">
+							  <img src="{% static 'assets/images/item-13.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							  <div class="sale-badge">SALE</div>
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
+							  <span><del>₹5999.00</del></span>
+							  <span class="price">₹999.00</span>
+							</div>
+						  
+					</div>
+					</div>
+					<div class="col-md-3 col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+							<a href="#" class="prod-img position-relative">
+							  <img src="{% static 'assets/images/item-14.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							  <div class="sale-badge">SALE</div>
+							</a>
+							<div class="desc">
+							  <h2><a href="#">Women's Sports Shoes</a></h2>
+							  <span><del>₹3999.00</del></span>
+							  <span class="price">₹999.00</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-14.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							<a href="#" class="prod-img position-relative">
+							  <img src="{% static 'assets/images/item-15.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							  <div class="sale-badge">SALE</div>
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+							  <h2><a href="#">AIR Limited Edition</a></h2>
+							  <span><del>₹5999.00</del></span>
+							  <span class="price">₹999.00</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 col-lg-3 mb-4 text-center">
 						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-15.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							<a href="#" class="prod-img position-relative">
+							  <img src="{% static 'assets/images/item-16.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							  <div class="sale-badge">SALE</div>
 							</a>
 							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-16.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's Boots Shoes Maca</a></h2>
-								<span class="price">$139.00</span>
+							  <h2><a href="#">Men's Casual oprax Shoe</a></h2>
+							  <span><del>₹1999.00</del></span>
+							  <span class="price">₹999.00</span>
 							</div>
 						</div>
 					</div>
@@ -392,78 +651,83 @@
 			</div>
 		</div>
  
-		<footer id="colorlib-footer" role="contentinfo">
-			<div class="container">
-				<div class="row row-pb-md">
-					<div class="col footer-col colorlib-widget">
-						<h4>About Footwear</h4>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-						<p>
-							<ul class="colorlib-social-icons">
-								<li><a href="#"><i class="icon-twitter"></i></a></li>
-								<li><a href="#"><i class="icon-facebook"></i></a></li>
-								<li><a href="#"><i class="icon-linkedin"></i></a></li>
-								<li><a href="#"><i class="icon-dribbble"></i></a></li>
-							</ul>
-						</p>
-					</div>
-					<div class="col footer-col colorlib-widget">
-						<h4>Customer Care</h4>
-						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="#">Contact</a></li>
-								<li><a href="#">Returns/Exchange</a></li>
-								<li><a href="#">Gift Voucher</a></li>
-								<li><a href="#">Wishlist</a></li>
-								<li><a href="#">Special</a></li>
-								<li><a href="#">Customer Services</a></li>
-								<li><a href="#">Site maps</a></li>
-							</ul>
-						</p>
-					</div>
-					<div class="col footer-col colorlib-widget">
-						<h4>Information</h4>
-						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="#">About us</a></li>
-								<li><a href="#">Delivery Information</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Support</a></li>
-								<li><a href="#">Order Tracking</a></li>
-							</ul>
-						</p>
-					</div>
-
-					<div class="col footer-col">
-						<h4>News</h4>
-						<ul class="colorlib-footer-links">
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="#">Press</a></li>
-							<li><a href="#">Exhibitions</a></li>
-						</ul>
-					</div>
-
-					<div class="col footer-col">
-						<h4>Contact Information</h4>
-						<ul class="colorlib-footer-links">
-							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
-							<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
-							<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-							<li><a href="#">yoursite.com</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="copy">
-				<div class="row">
-					
-				</div>
-			</div>
-		</footer>
+		
+<footer id="colorlib-footer" role="contentinfo">
+	<div class="container">
+	<div class="row row-pb-md">
+	<div class="col footer-col colorlib-widget">
+	<h4>About Footwear</h4>
+	<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+	<p>
+	<ul class="colorlib-social-icons">
+	<li><a href="#"><i class="icon-twitter"></i></a></li>
+	<li><a href="#"><i class="icon-facebook"></i></a></li>
+	<li><a href="#"><i class="icon-linkedin"></i></a></li>
+	<li><a href="#"><i class="icon-dribbble"></i></a></li>
+	</ul>
+	</p>
 	</div>
-
+	<div class="col footer-col colorlib-widget">
+	<h4>Customer Care</h4>
+	<p>
+	<ul class="colorlib-footer-links">
+	<li><a href="{% url 'contact' %}">Contact</a></li>
+	<li><a href="{% url 'checkout' %}">Returns/Exchange</a></li>
+	<li><a href="#">Gift Voucher</a></li>
+	<li><a href="{% url 'add-to-wishlist' %}">Wishlist</a></li>
+	<li><a href="{% url 'men' %}">Special</a></li>
+	<li><a href="{% url 'contact' %}">Customer Services</a></li>
+	<li><a href="#">Site maps</a></li>
+	</ul>
+	</p>
+	</div>
+	<div class="col footer-col colorlib-widget">
+	<h4>Information</h4>
+	<p>
+	<ul class="colorlib-footer-links">
+	<li><a href="{% url 'about' %}">About us</a></li>
+	<li><a href="{% url 'checkout' %}">Delivery Information</a></li>
+	<li><a href="{% url 'terms_conditions_page' %}">Privacy Policy</a></li>
+	<li><a href="{% url 'contact' %}">Support</a></li>
+	<li><a href="#">Order Tracking</a></li>
+	</ul>
+	</p>
+	</div>
+	
+	<div class="col footer-col">
+	<h4>News</h4>
+	<ul class="colorlib-footer-links">
+	<li><a href="#">Blog</a></li>
+	<li><a href="#">Press</a></li>
+	<li><a href="#">Exhibitions</a></li>
+	</ul>
+	</div>
+	
+	<div class="col footer-col">
+	<h4>Contact Information</h4>
+	<ul class="colorlib-footer-links">
+	<li>Graphic Era hill university, <br> Bhimtal, Uttarakhand</li>
+	<li><a href="#">+91 1234567890</a></li>
+	<li><a href="#">info@Sneekpeek.com</a></li>
+	<li><a href="{% url 'about' %}">Sneekpeek.com</a></li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	<div class="copy">
+	<div class="row">
+	<div class="col-sm-12 text-center">
+	<p>
+	<!-- n class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span> -->
+	</p>
+	</div>
+	</div>
+	</div>
+	</footer>
+	</div>
+	
 	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
 	</div>
 	
 <!-- jQuery -->

@@ -1,0 +1,146 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Profile - SneekPeek</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 30px;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 25px;
+      margin-bottom: 25px;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #1794ca;
+      box-shadow: 0 4px 12px rgba(23, 148, 202, 0.4);
+    }
+    .profile-info h2 {
+      margin: 0 0 6px 0;
+      font-size: 1.9rem;
+      color: #1794ca;
+    }
+    .profile-info p {
+      margin: 4px 0;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .profile-actions {
+      margin-top: 15px;
+    }
+    .btn {
+      background-color: #1794ca;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-right: 12px;
+    }
+    .btn:hover {
+      background-color: #0e648a;
+    }
+    .dashboard {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .dashboard-section {
+      flex: 1 1 300px;
+      background: #e9f2fa;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 5px rgba(23, 148, 202, 0.15);
+    }
+    .dashboard-section h3 {
+      margin-top: 0;
+      color: #1794ca;
+      margin-bottom: 15px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid #d7e3f0;
+      font-size: 1rem;
+    }
+    ul li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile-header">
+      <img src="{% static 'assets/images/user.jpg' %}" alt="User Profile" class="profile-pic" />
+      <div class="profile-info">
+        <h2>John Doe</h2>
+        <p>Email: john.doe@example.com</p>
+        <p>Member since: January 2023</p>
+        <div class="profile-actions">
+          <a href="{% url 'edit-profile' %}" class="btn">Edit Profile</a>
+          <a href="{% url 'order-history' %}" class="btn">Order History</a>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard">
+      <div class="dashboard-section">
+        <h3>Account Details</h3>
+        <ul>
+          <li>Username: johndoe123</li>
+          <li>Phone: +91 9876543210</li>
+          <li>Address: 123, Bhimtal, Uttarakhand</li>
+          <li>Preferred Payment: Credit Card</li>
+        </ul>
+      </div>
+      <div class="dashboard-section">
+        <h3>Recent Orders</h3>
+        <ul>
+          <li>Order #4587 - Delivered</li>
+          <li>Order #4532 - In Transit</li>
+          <li>Order #4490 - Processing</li>
+          <li>Order #4401 - Delivered</li>
+        </ul>
+      </div>
+      <div class="dashboard-section">
+        <h3>Wishlist</h3>
+        <ul>
+          <li>Black Running Shoes</li>
+          <li>Leather Wallet</li>
+          <li>Summer Sunglasses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
