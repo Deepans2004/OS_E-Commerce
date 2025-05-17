@@ -217,6 +217,12 @@
 </div>
 </div>
 </div>
+<div style="position: fixed; top: 10px; right: 10px;">
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
+</div>
 </nav>
 <aside id="colorlib-hero">
 <div class="flexslider">
