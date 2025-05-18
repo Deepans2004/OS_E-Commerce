@@ -22,7 +22,7 @@ urlpatterns = [
     path('checkout/', views.checkout_view, name='checkout'),
     path('order-complete/', views.order_complete_view, name='order-complete'),
     path('add-to-wishlist/', views.add_to_wishlist_view, name='add-to-wishlist'),
-    path('terms-conditions/', views.terms_conditions_page_view, name='terms-conditions'),
+    path('terms-conditions/', views.terms_conditions_page, name='terms_conditions_page'),
 
     # Profile & Orders (require login)
     path('profile/', views.profile_view, name='profile'),

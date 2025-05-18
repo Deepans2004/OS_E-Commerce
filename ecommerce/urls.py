@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from core import views
@@ -10,6 +10,9 @@ urlpatterns = [
 
     # Home Page
     path("", views.index_view, name="index"),
+
+    path(' ', include("core.urls")),
+
 
     # Auth routes from core app
     path("login/", views.login_view, name="login"),
@@ -26,7 +29,7 @@ urlpatterns = [
     path("checkout/", views.checkout_view, name="checkout"),
     path("order-complete/", views.order_complete_view, name="order-complete"),
     path("add-to-wishlist/", views.add_to_wishlist_view, name="add-to-wishlist"),
-    path("terms-conditions/", views.terms_conditions_page_view, name="terms-conditions"),
+    path("terms-conditions/", views.terms_conditions_page, name="terms_conditions_page"),
 
     # User Profile & Orders
     path("profile/", views.profile_view, name="profile"),

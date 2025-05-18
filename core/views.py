@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.contrib.auth.models import User  # if you use User anywhere
+# from .forms import CustomUserCreationForm
+from .forms import SignUpForm
 
 # ----------------------------
 # ✅ Home Page (Protected)
@@ -18,43 +20,35 @@ def index_view(request):
 # ----------------------------
 
 def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('core:index')
-
-    form = AuthenticationForm(request, data=request.POST or None)
     if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)  # bind data to form
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, "Login successful.")
-            return redirect('core:index')
+            return redirect('index')  # Make sure 'home' is the name of your home URL pattern
         else:
-            messages.error(request, "Invalid username or password.")
+            messages.error(request, 'Invalid credentials')
+    else:
+        form = AuthenticationForm()  # empty form for GET request
 
     return render(request, 'core/login.html', {'form': form})
 
 
-def signup_view(request):
-    if request.user.is_authenticated:
-        return redirect('core:index')
 
-    form = UserCreationForm(request.POST or None)
+def signup_view(request):
     if request.method == 'POST':
+        form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            messages.success(request, "Signup successful.")
-            return redirect('core:index')
-        else:
-            messages.error(request, "Signup failed. Please correct the errors below.")
-
+            login(request, user)  # Log in the user after signup
+            return redirect('index')  # Change 'home' to your home URL name
+    else:
+        form = SignUpForm()
     return render(request, 'core/login_signup.html', {'form': form})
-
 
 def logout_view(request):
     logout(request)
-    messages.success(request, "Logged out successfully.")
-    return redirect('login')
+    return redirect('login')  # or any page you want after logout
 
 
 # ----------------------------
@@ -88,7 +82,7 @@ def add_to_wishlist_view(request):
 def women_view(request):
     return render(request, 'core/women.html')
 
-def terms_conditions_page_view(request):
+def terms_conditions_page(request):
     return render(request, 'core/terms_conditions_page.html')
 
 
