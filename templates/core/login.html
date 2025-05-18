@@ -72,7 +72,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: rgba(255, 255, 255, 0.12);
-      padding: 40px 50px 30px; /* reduced padding for tighter look */
+      padding: 30px 50px 20px; /* reduced top and bottom padding */
       border-radius: 14px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       width: 420px;
@@ -84,26 +84,26 @@
 
     /* Logo and brand name */
     .logo {
-      margin-bottom: 10px; /* reduced space below logo */
+      margin-bottom: 4px; /* reduced margin */
     }
     .logo img {
-      width: 140px; /* larger but not too big */
+      width: 140px;
       height: auto;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       display: block;
       margin: 0 auto;
     }
     .brand-name {
-      font-size: 2.5rem; /* big & bold */
+      font-size: 2.5rem;
       font-weight: 900;
       letter-spacing: 2px;
-      margin-bottom: 15px; /* reduced margin */
+      margin-bottom: 8px; /* reduced margin */
       text-shadow: 0 2px 8px rgba(0,0,0,0.4);
       color: #ffd6e8;
     }
 
     h2 {
-      margin-bottom: 18px; /* tighter spacing */
+      margin-bottom: 18px;
       font-weight: 700;
       letter-spacing: 1.3px;
       text-shadow: 0 3px 8px rgba(0,0,0,0.4);
@@ -114,7 +114,7 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 12px; /* smaller gap between inputs */
+      gap: 12px;
     }
 
     input[type="text"],
@@ -157,7 +157,7 @@
       cursor: pointer;
       box-shadow: 0 6px 28px rgba(229, 46, 113, 0.85);
       transition: background 2.5s ease;
-      margin-top: 10px; /* small margin above button */
+      margin-top: 10px;
     }
 
     button:hover {
@@ -205,7 +205,17 @@
     <form method="post" novalidate>
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Log in</button>
+      {% if error %}
+        <p style="color:red;">{{ error }}</p>
+      {% endif %}
+
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" required><br><br>
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required><br><br>
+
+      <button type="submit">Login</button>
     </form>
     <p>Don't have an account? <a href="{% url 'login_signup' %}">Sign up here</a></p>
   </div>

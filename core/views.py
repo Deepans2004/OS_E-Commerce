@@ -1,58 +1,90 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth.models import User  # if you use User anywhere
-# from .forms import CustomUserCreationForm
+from django.urls import reverse_lazy
 from .forms import SignUpForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 # ----------------------------
-# ✅ Home Page (Protected)
+# Home Page (Protected)
 # ----------------------------
-@login_required(login_url='/login/')
+@login_required(login_url=reverse_lazy('login'))
 def index_view(request):
     return render(request, 'core/index.html')
 
-
 # ----------------------------
-# ✅ Authentication Views
+# Authentication Views
 # ----------------------------
 
 def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)  # bind data to form
-        if form.is_valid():
-            user = form.get_user()
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
             login(request, user)
-            return redirect('index')  # Make sure 'home' is the name of your home URL pattern
+            return redirect('index')  # or your home page
         else:
-            messages.error(request, 'Invalid credentials')
+            error = "Invalid username or password"
+            return render(request, 'core/login.html', {'error': error})
     else:
-        form = AuthenticationForm()  # empty form for GET request
-
-    return render(request, 'core/login.html', {'form': form})
-
-
+        return render(request, 'core/login.html')
 
 def signup_view(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)  # Log in the user after signup
-            return redirect('index')  # Change 'home' to your home URL name
-    else:
-        form = SignUpForm()
-    return render(request, 'core/login_signup.html', {'form': form})
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        if password1 != password2:
+            messages.error(request, "Passwords do not match.")
+            return render(request, 'core/login_signup.html')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists.")
+            return render(request, 'core/login_signup.html')
+
+        user = User.objects.create_user(username=username, email=email, password=password1)
+        user.save()
+        messages.success(request, "Account created successfully!")
+        return redirect('core/login.html')  # URL name of your login view
+
+    return render(request, 'core/login_signup.html')
+
+def signup_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        if password1 != password2:
+            messages.error(request, "Passwords do not match.")
+            return render(request, 'core/login_signup.html')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists.")
+            return render(request, 'core/login_signup.html')
+
+        user = User.objects.create_user(username=username, email=email, password=password1)
+        user.save()
+        messages.success(request, "Account created successfully!")
+        return redirect('login')  # URL name of your login view
+
+    return render(request, 'core/login_signup.html')
 
 def logout_view(request):
     logout(request)
-    return redirect('login')  # or any page you want after logout
+    return redirect('login')
 
 
 # ----------------------------
-# ✅ Public Views
+# Public Views
 # ----------------------------
 
 def men_view(request):
@@ -85,19 +117,18 @@ def women_view(request):
 def terms_conditions_page(request):
     return render(request, 'core/terms_conditions_page.html')
 
-
 # ----------------------------
-# ✅ Protected Views (Login Required)
+# Protected Views (Login Required)
 # ----------------------------
 
-@login_required(login_url='/login/')
+@login_required(login_url=reverse_lazy('login'))
 def profile_view(request):
     return render(request, 'core/profile.html')
 
-@login_required(login_url='/login/')
+@login_required(login_url=reverse_lazy('login'))
 def order_history_view(request):
     return render(request, 'core/order_history.html')
 
-@login_required(login_url='/login/')
+@login_required(login_url=reverse_lazy('login'))
 def edit_profile_view(request):
     return render(request, 'core/edit_profile.html')

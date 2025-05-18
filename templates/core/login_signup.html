@@ -53,7 +53,6 @@
     row-gap: 16px;
   }
 
-  /* Label and input grouped vertically */
   .form-group {
     display: flex;
     flex-direction: column;
@@ -69,7 +68,6 @@
 
   input[type="text"],
   input[type="password"],
-  input[type="password1"],
   input[type="email"],
   input[type="number"],
   input[type="tel"],
@@ -92,7 +90,6 @@
     box-shadow: 0 0 10px #b19cd9;
   }
 
-  /* For checkboxes and terms, span full width */
   .checkbox-group {
     grid-column: 1 / -1;
     display: flex;
@@ -164,7 +161,6 @@
     text-decoration: underline;
   }
 
-  /* Responsive adjustments */
   @media (max-width: 620px) {
     form {
       grid-template-columns: 1fr;
@@ -179,24 +175,24 @@
   <div class="login-container" role="main" aria-label="Sign up form">
     <div class="brand-name">SneekPeek</div>
     <h2>Sign Up</h2>
-    
-<!-- Show errors above the form -->
-      {% if form.errors %}
-      <ul style="color: red;">
-       {% for field in form %}
-         {% for error in field.errors %}
-           <li>{{ field.label }}: {{ error }}</li>
-         {% endfor %}     
+
+    <!-- Show errors above the form -->
+    {% if form.errors %}
+    <ul style="color: red;">
+      {% for field in form %}
+        {% for error in field.errors %}
+          <li>{{ field.label }}: {{ error }}</li>
         {% endfor %}
-        {% for error in form.non_field_errors %}
-          <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
 
     <form method="post" novalidate>
       {% csrf_token %}
-      <!-- {{ form.as_p }} -->
+
       <div class="form-group">
         <label for="id_first_name">First Name</label>
         <input type="text" id="id_first_name" name="first_name" placeholder="First Name" required />
@@ -228,13 +224,13 @@
       </div>
 
       <div class="form-group">
-        <label for="id_password">Password</label>
-        <input type="password" id="id_password" name="password1" placeholder="Password" required />
+        <label for="id_password1">Password</label>
+        <input type="password" id="id_password1" name="password1" placeholder="Password" required />
       </div>
 
       <div class="form-group">
-        <label for="id_password1">Password confirmation</label>
-        <input type="password1" id="id_password1" name="password1" placeholder="Confirm Password" required />
+        <label for="id_password2">Confirm Password</label>
+        <input type="password" id="id_password2" name="password2" placeholder="Confirm Password" required />
       </div>
 
       <div class="form-group">
@@ -254,8 +250,7 @@
 
       <div class="checkbox-group">
         <input type="checkbox" id="agree_terms" name="agree_terms" required />
-        <label for="agree_terms">I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-          and <a href="/terms" target="_blank" rel="noopener noreferrer">Terms</a></label>
+        <label for="agree_terms">I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="/terms" target="_blank" rel="noopener noreferrer">Terms</a></label>
       </div>
 
       <button type="submit">Create Account</button>

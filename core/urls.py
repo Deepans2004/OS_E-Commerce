@@ -9,7 +9,7 @@ urlpatterns = [
 
     # Authentication
     path('login/', views.login_view, name='login'),
-    path('signup/', views.signup_view, name='login_signup'),
+    path('signup/', views.signup_view, name='signup'),  # renamed from login_signup to signup
     path('logout/', views.logout_view, name='logout'),
 
     # Core Pages
@@ -22,10 +22,10 @@ urlpatterns = [
     path('checkout/', views.checkout_view, name='checkout'),
     path('order-complete/', views.order_complete_view, name='order-complete'),
     path('add-to-wishlist/', views.add_to_wishlist_view, name='add-to-wishlist'),
-    path('terms-conditions/', views.terms_conditions_page, name='terms_conditions_page'),
+    path('terms-conditions/', views.terms_conditions_page, name='terms-conditions'),
 
     # Profile & Orders (require login)
     path('profile/', views.profile_view, name='profile'),
     path('orders/', views.order_history_view, name='order-history'),
-    # path('edit-profile/', views.edit_profile_view, name='edit-profile'),
+    path('edit-profile/', views.edit_profile_view, name='edit-profile'),
 ]
