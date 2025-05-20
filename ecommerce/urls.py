@@ -1,4 +1,6 @@
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from core import views
 from django.contrib import admin
 
@@ -11,6 +13,9 @@ urlpatterns = [
     path('', include('core.urls')),  # Your existing app URLs
     # Home Page
     path('', views.index_view, name='index'),
+
+    # Offline Page
+    path('offline.html', views.offline_view, name='offline'),
 
     # Authentication
     path('login/', views.login_view, name='login'),
@@ -34,3 +39,6 @@ urlpatterns = [
     path('orders/', views.order_history_view, name='order-history'),
     path('edit-profile/', views.edit_profile_view, name='edit-profile'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

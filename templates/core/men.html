@@ -219,17 +219,21 @@
   display: inline-block;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 50%;
+  filter: brightness(100%);
+  border: 2px solid #ccc;
 }
 
 .user-circle-link:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  filter: brightness(80%);
+  border: 2px solid #1194cd;
 }
 
 .user-circle-img {
-  height: 42px;
-  width: 42px;
-  border-radius: 50%;
+  height: 62px;
+  width: 62px;
+  border-radius: 60%;
   object-fit: cover;
   border: 2px solid #ccc;
   transition: border 0.3s ease;
@@ -238,7 +242,6 @@
 .user-circle-img:hover {
   border-color: #888;
 }
-
 		  </style>
 	<title>Shop-Sneekpeek</title>
    <meta charset="utf-8">
@@ -278,8 +281,8 @@
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
 			<li class="user-circle-wrapper">
-				<a href="#" class="user-circle-link">
-					<img src="{% static 'assets/images/user.jpg' %}" alt="User" class="user-circle-img">
+				<a href="{% url 'profile' %}" class="user-circle-link">
+					<img src="{% static 'assets/images/user.webp' %}" alt="User" class="user-circle-img">
 				</a>
 			</li>
 			
@@ -755,6 +758,20 @@
 <script src="{% static 'assets/js/jquery.Stellar.min.js' %}"></script>
 <!-- Main -->
 <script src="{% static 'assets/js/main.js' %}"></script>
+
+<script>
+	if ('serviceWorker' in navigator) {
+	  window.addEventListener('load', () => {
+		navigator.serviceWorker.register('/static/assets/js/sw.js')
+		  .then(reg => {
+			console.log('Service Worker registered:', reg);
+		  })
+		  .catch(err => {
+			console.log('Service Worker registration failed:', err);
+		  });
+	  });
+	}
+	</script>
 
 	</body>
 </html>

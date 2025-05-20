@@ -1,0 +1,290 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login-Sneekpeek</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      /* Vertical gradient from black to dark blue */
+      background: linear-gradient(to bottom, #000000, #001f4d);
+      color: #fff;
+      position: relative;
+    }
+
+    /* Side blue gradient glow */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        linear-gradient(to right, #002366 40%, transparent 80%),
+        linear-gradient(to left, #002366 40%, transparent 80%);
+      opacity: 0.35;
+      mix-blend-mode: screen;
+    }
+
+    /* Container for stars */
+    #starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+      background: transparent;
+    }
+
+    /* Individual star styles */
+    .star {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.85;
+      will-change: transform, opacity;
+      filter: drop-shadow(0 0 2px #fff);
+    }
+
+    /* Login container */
+    .login-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.12);
+      padding: 30px 50px 20px; /* reduced top and bottom padding */
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      width: 420px;
+      max-width: 90vw;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      z-index: 10;
+    }
+
+    /* Logo and brand name */
+    .logo {
+      margin-bottom: 4px; /* reduced margin */
+    }
+    .logo img {
+      width: 140px;
+      height: auto;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+      display: block;
+      margin: 0 auto;
+    }
+    .brand-name {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 8px; /* reduced margin */
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      color: #ffd6e8;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+      font-size: 2.4rem;
+      color: white;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      padding: 16px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      outline: none;
+      transition: box-shadow 0.5s ease;
+      width: 100%;
+      max-width: 100%;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      caret-color: #e52e71;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder,
+    input[type="email"]::placeholder {
+      color: #ddd;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
+      box-shadow: 0 0 18px #b19cd9;
+      background: rgba(255,255,255,0.3);
+    }
+
+    button {
+      padding: 16px;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 28px rgba(229, 46, 113, 0.85);
+      transition: background 2.5s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #e52e71, #ff8a00);
+    }
+
+    p {
+      margin-top: 26px;
+      font-size: 15px;
+      color: #f0e9ffcc;
+    }
+
+    p a {
+      color: #ffd6e8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.8s ease;
+    }
+
+    p a:hover {
+      color: #ff85a2;
+      text-decoration: underline;
+    }
+
+    /* Style Django form errors */
+    .errorlist {
+      margin-bottom: 12px;
+      list-style-type: none;
+      color: #ff6b6b;
+      font-weight: 700;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="starfield"></div>
+
+  <div class="login-container" role="main" aria-label="Login form">
+    <div class="logo">
+      <img src="{% static 'assets/images/logoj.png' %}" alt="Brand Logo - check your static path" />
+    </div>
+    <div class="brand-name">SneekPeek</div>
+    <h2>Login</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if error %}
+        <p style="color:red;">{{ error }}</p>
+      {% endif %}
+
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" required><br><br>
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required><br><br>
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'login_signup' %}">Sign up here</a></p>
+  </div>
+
+  <script>
+    const starfield = document.getElementById('starfield');
+    const stars = [];
+    const starCount = 120;
+
+    function randomRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    class Star {
+      constructor() {
+        this.el = document.createElement('div');
+        this.el.classList.add('star');
+        this.el.style.width = this.el.style.height = `${randomRange(3, 6)}px`;
+        this.x = randomRange(0, window.innerWidth);
+        this.y = randomRange(0, window.innerHeight);
+        this.speedX = randomRange(-0.15, 0.15);
+        this.speedY = randomRange(-0.1, 0.1);
+        this.opacity = randomRange(0.5, 1);
+        this.opacityChange = randomRange(0.002, 0.008);
+        this.el.style.opacity = this.opacity;
+        this.el.style.left = `${this.x}px`;
+        this.el.style.top = `${this.y}px`;
+        starfield.appendChild(this.el);
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Keep inside viewport (wrap around)
+        if (this.x > window.innerWidth) this.x = 0;
+        if (this.x < 0) this.x = window.innerWidth;
+        if (this.y > window.innerHeight) this.y = 0;
+        if (this.y < 0) this.y = window.innerHeight;
+
+        // Pulsate opacity
+        this.opacity += this.opacityChange;
+        if (this.opacity >= 1 || this.opacity <= 0.5) {
+          this.opacityChange = -this.opacityChange;
+        }
+        this.el.style.opacity = this.opacity;
+
+        this.el.style.left = `${this.x}px`;
+        this.el.style.top = `${this.y}px`;
+      }
+    }
+
+    for (let i = 0; i < starCount; i++) {
+      stars.push(new Star());
+    }
+
+    function animate() {
+      stars.forEach(star => star.update());
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      stars.forEach(star => {
+        star.x = randomRange(0, window.innerWidth);
+        star.y = randomRange(0, window.innerHeight);
+      });
+    });
+
+    animate();
+  </script>
+</body>
+</html>

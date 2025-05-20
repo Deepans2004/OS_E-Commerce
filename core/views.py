@@ -3,10 +3,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.views.decorators.cache import cache_page
 from .forms import SignUpForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
+
 
 # ----------------------------
 # Home Page (Protected)
@@ -131,4 +134,27 @@ def order_history_view(request):
 
 @login_required(login_url=reverse_lazy('login'))
 def edit_profile_view(request):
-    return render(request, 'core/edit_profile.html')
+    return render(request, 'core/edit-profile.html')
+
+def offline_view(request):
+    return render(request, 'core/offline.html')
+
+
+def about(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        # AJAX request - return partial HTML (content only)
+        return render(request, 'core/about_content.html')
+    else:
+        # Normal page load - return full page
+        return render(request, 'core/about.html')
+
+def contact(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(request, 'core/contact_content.html')
+    else:
+        return render(request, 'core/contact.html')
+
+@cache_page(60 * 1)  # cache for 10 minutes
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'core/product_detail.html', {'product': product})

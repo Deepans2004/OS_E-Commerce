@@ -7,6 +7,9 @@ urlpatterns = [
     # Home Page
     path('', views.index_view, name='index'),
 
+    # Offline Page
+    path('offline.html', views.offline_view, name='offline'),
+
     # Authentication
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),  # renamed from login_signup to signup
