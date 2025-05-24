@@ -30,6 +30,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, f"{username} logged in successfully!")
             return redirect('index')  # or your home page
         else:
             error = "Invalid username or password"
@@ -158,3 +159,6 @@ def contact(request):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'core/product_detail.html', {'product': product})
+
+#product buying
+

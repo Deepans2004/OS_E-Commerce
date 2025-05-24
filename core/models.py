@@ -4,7 +4,7 @@ from datetime import date
 import datetime
 
 
-
+#model for Profile
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     age = models.IntegerField(default=0)

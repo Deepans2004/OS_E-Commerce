@@ -27,6 +27,9 @@ urlpatterns = [
     path('add-to-wishlist/', views.add_to_wishlist_view, name='add-to-wishlist'),
     path('terms-conditions/', views.terms_conditions_page, name='terms-conditions'),
 
+    #buying product
+    
+
     # Profile & Orders (require login)
     path('profile/', views.profile_view, name='profile'),
     path('orders/', views.order_history_view, name='order-history'),
