@@ -162,24 +162,6 @@
 }
 
 /* Overlay button container */
-.prod-img::after {
-  content: "Shop Now";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(33, 159, 5, 0.85);
-  color: #000000;
-  padding: 8px 18px;
-  font-weight: 400;
-  border-radius: 25px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
 
 /* On hover, dull the image and show the overlay */
 .prod-img:hover img {
@@ -313,7 +295,7 @@
 										<li><a href="{% url 'cart' %}">Shopping Cart</a></li>
 										<li><a href="{% url 'checkout' %}">Checkout</a></li>
 										<li><a href="{% url 'order-complete' %}">Order Complete</a></li>
-										<li><a href="{% url 'add-to-wishlist' %}">Wishlist</a></li>
+										<li><a href="{% url 'wishlist' %}">Wishlist</a></li>
 									</ul>
 								</li>
 								<li><a href="{% url 'about' %}">Ａｂｏｕｔ</a></li>
@@ -375,258 +357,30 @@
 			</div>
 			<div class="dot-indicator"></div>
 		</div>
+		<br>
 
-		<div class="colorlib-featured">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4 text-center">
-						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/men.jpg' %}');">
-								<h2>Casuals</h2>
-								<p><a href="{% url 'men' %}#new-list" class="btn btn-primary btn-lg">Shop now</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4 text-center">
-						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/women.jpg' %}');;">
-								<h2>Dress</h2>
-								<p><a href="{% url 'men' %}#new-list" class="btn btn-primary btn-lg">Shop now</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4 text-center">
-						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url('{% static 'assets/images/item-11.jpg' %}');">
-								<h2>Sports</h2>
-								<p><a href="{% url 'men' %}#new-list" class="btn btn-primary btn-lg">Shop now</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<center><h1>SHOP HERE!!!</h1></center>
 
-		<div class="colorlib-product">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-						<h2>View All Products</h2>
-					</div>
+		<br>
+
+		<div class="row row-pb-md" id="new-list">
+			{% for product in products %}
+			  <div class="col-md-3 col-lg-3 mb-4 text-center">
+				<div class="product-entry border">
+				  <a href="#" class="prod-img">
+					<img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+					<br>
+					<a href="{% url 'core:add-to-wishlist' product.id %}" class="btn btn-primary">Add to Wishlist</a>
+				  </a>
+				  <div class="desc">
+					<h2><a href="#">{{ product.name }}</a></h2>
+					<span class="price">₹{{ product.price }}</span>
+				  </div>
 				</div>
-				<div class="row row-pb-md"  id="new-list">
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="{% url 'men' %}#new-list" class="prod-img">
-								<img src="{% static 'assets/images/item-1.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's leath-made shoes</a></h2>
-								<span class="price">₹4999.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="{% url 'men' %}#new-list" class="prod-img">
-								<img src="{% static 'assets/images/item-2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's Minam Meaghan</a></h2>
-								<span class="price">₹1399.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="{% url 'men' %}#new-list" class="prod-img">
-								<img src="{% static 'assets/images/item-3.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Men's Taja Commissioner</a></h2>
-								<span class="price">₹1899.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-4.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Russ Men's Sneakers</a></h2>
-								<span class="price">₹1299.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="w-100"></div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-5.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's high heels</a></h2>
-								<span class="price">₹1499.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-6.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">DQ 1000 sports</a></h2>
-								<span class="price">₹2299.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-7.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Leather Class</a></h2>
-								<span class="price">₹2899.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-8.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Top Leather Class</a></h2>
-								<span class="price">₹2899.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="w-100"></div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-9.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Merrell vento</a></h2>
-								<span class="price">₹3099.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-10.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Women's Step UP</a></h2>
-								<span class="price">₹2499.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-11.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Jordan 1 Retro High OG</a></h2>
-								<span class="price">₹10999.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{% static 'assets/images/item-12.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-								<h2><a href="#">Nike jumper Sport -Dark Edition</a></h2>
-								<span class="price">₹7999.00</span>
-							</div>
-						</div>
-					</div>
+			  </div>
+			{% endfor %}
+		  </div>
 					
-
-
-
-
-					<div class="w-100"></div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border" id="salle">
-							<a href="#" class="prod-img position-relative">
-							  <img src="{% static 'assets/images/item-13.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							  <div class="sale-badge">SALE</div>
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span><del>₹5999.00</del></span>
-							  <span class="price">₹999.00</span>
-							</div>
-						  
-					</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img position-relative">
-							  <img src="{% static 'assets/images/item-14.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							  <div class="sale-badge">SALE</div>
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Sports Shoes</a></h2>
-							  <span><del>₹3999.00</del></span>
-							  <span class="price">₹999.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img position-relative">
-							  <img src="{% static 'assets/images/item-15.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							  <div class="sale-badge">SALE</div>
-							</a>
-							<div class="desc">
-							  <h2><a href="#">AIR Limited Edition</a></h2>
-							  <span><del>₹5999.00</del></span>
-							  <span class="price">₹999.00</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img position-relative">
-							  <img src="{% static 'assets/images/item-16.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							  <div class="sale-badge">SALE</div>
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Men's Casual oprax Shoe</a></h2>
-							  <span><del>₹1999.00</del></span>
-							  <span class="price">₹999.00</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<div class="block-27">
-		               <ul>
-			               <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
-		                  <li class="active"><span>1</span></li>
-		                  <li><a href="#">2</a></li>
-		                  <li><a href="#">3</a></li>
-		                  <li><a href="#">4</a></li>
-		                  <li><a href="#">5</a></li>
-		                  <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
-		               </ul>
-		            </div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<div class="colorlib-partner">
 			<div class="container">
 				<div class="row">
@@ -677,7 +431,7 @@
 	<li><a href="{% url 'contact' %}">Contact</a></li>
 	<li><a href="{% url 'checkout' %}">Returns/Exchange</a></li>
 	<li><a href="#">Gift Voucher</a></li>
-	<li><a href="{% url 'add-to-wishlist' %}">Wishlist</a></li>
+	<li><a href="{% url 'wishlist' %}">Wishlist</a></li>
 	<li><a href="{% url 'men' %}">Special</a></li>
 	<li><a href="{% url 'contact' %}">Customer Services</a></li>
 	<li><a href="#">Site maps</a></li>

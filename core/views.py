@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
+from .models import Product, WishlistItem
 
 
 # ----------------------------
@@ -92,7 +93,8 @@ def logout_view(request):
 # ----------------------------
 
 def men_view(request):
-    return render(request, 'core/men.html')
+    products = Product.objects.all()  # get all products
+    return render(request, 'core/men.html', {'products': products})
 
 def about_view(request):
     return render(request, 'core/about.html')
@@ -112,8 +114,19 @@ def checkout_view(request):
 def order_complete_view(request):
     return render(request, 'core/order-complete.html')
 
-def add_to_wishlist_view(request):
-    return render(request, 'core/add-to-wishlist.html')
+@login_required
+def add_to_wishlist(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    wishlist_item, created = WishlistItem.objects.get_or_create(
+        user=request.user,
+        product=product
+    )
+    if not created:
+        wishlist_item.quantity += 1
+        wishlist_item.save()
+
+    return redirect('wishlist')  # We will create this page next
 
 def women_view(request):
     return render(request, 'core/women.html')
@@ -161,4 +174,9 @@ def product_detail(request, product_id):
     return render(request, 'core/product_detail.html', {'product': product})
 
 #product buying
+
+@login_required
+def wishlist_view(request):
+    items = WishlistItem.objects.filter(user=request.user)
+    return render(request, 'core/wishlist.html', {'items': items})
 
