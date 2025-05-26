@@ -370,7 +370,7 @@
 				  <a href="#" class="prod-img">
 					<img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
 					<br>
-					<a href="{% url 'core:add-to-wishlist' product.id %}" class="btn btn-primary">Add to Wishlist</a>
+					<a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-warning btn-sm">Add to Wishlist</a>
 				  </a>
 				  <div class="desc">
 					<h2><a href="#">{{ product.name }}</a></h2>

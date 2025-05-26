@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -117,16 +117,28 @@ def order_complete_view(request):
 @login_required
 def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-
-    wishlist_item, created = WishlistItem.objects.get_or_create(
-        user=request.user,
-        product=product
-    )
+    wishlist_item, created = WishlistItem.objects.get_or_create(user=request.user, product=product)
     if not created:
         wishlist_item.quantity += 1
         wishlist_item.save()
+    return redirect('wishlist')
 
-    return redirect('wishlist')  # We will create this page next
+
+@login_required
+def wishlist_page(request):
+    items = WishlistItem.objects.filter(user=request.user)
+    total = sum(item.total_price() for item in items)
+    return render(request, 'core/add-to-wishlist.html', {'items': items, 'total': total})
+
+
+@login_required
+def remove_from_wishlist(request, item_id):
+    item = get_object_or_404(WishlistItem, id=item_id, user=request.user)
+    item.delete()
+    return redirect('wishlist')
+
+
+
 
 def women_view(request):
     return render(request, 'core/women.html')

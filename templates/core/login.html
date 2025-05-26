@@ -18,168 +18,271 @@
     html, body {
       height: 100%;
       overflow: hidden;
-      /* Vertical gradient from black to dark blue */
-      background: linear-gradient(to bottom, #000000, #001f4d);
-      color: #fff;
-      position: relative;
     }
 
-    /* Side blue gradient glow */
-    body::before {
-      content: "";
-      position: fixed;
+    /* Main container - split layout */
+    .main-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Left side - Image section */
+    .image-section {
+      flex: 1;
+      position: relative;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .background-image {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
+      object-fit: cover;
+      opacity: 0.7;
       z-index: 1;
-      background:
-        linear-gradient(to right, #002366 40%, transparent 80%),
-        linear-gradient(to left, #002366 40%, transparent 80%);
-      opacity: 0.35;
-      mix-blend-mode: screen;
     }
 
-    /* Container for stars */
-    #starfield {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-      background: transparent;
-    }
-
-    /* Individual star styles */
-    .star {
+    .overlay {
       position: absolute;
-      width: 5px;
-      height: 5px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.85;
-      will-change: transform, opacity;
-      filter: drop-shadow(0 0 2px #fff);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+      z-index: 2;
     }
 
-    /* Login container */
-    .login-container {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.12);
-      padding: 30px 50px 20px; /* reduced top and bottom padding */
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      width: 420px;
-      max-width: 90vw;
+    .content-overlay {
+      position: relative;
+      z-index: 3;
       text-align: center;
-      backdrop-filter: blur(14px);
-      z-index: 10;
+      padding: 40px;
+    }
+
+    .main-title {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .dots-indicator {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
+    /* Right side - Login section */
+    .login-section {
+      flex: 1;
+      background: #2c2c54;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 40px;
+      position: relative;
+    }
+
+    .login-header {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: #a0a0a0;
+      font-size: 14px;
+    }
+
+    .login-header a {
+      color: #8b7cf8;
+      text-decoration: none;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      text-align: left;
     }
 
     /* Logo and brand name */
     .logo {
-      margin-bottom: 4px; /* reduced margin */
-    }
-    .logo img {
-      width: 140px;
-      height: auto;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
-      display: block;
-      margin: 0 auto;
-    }
-    .brand-name {
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 8px; /* reduced margin */
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      color: #ffd6e8;
+      text-align: center;
+      margin-bottom: 3px;
     }
 
-    h2 {
-      margin-bottom: 18px;
+    .logo img {
+      width: 240px;
+      height: 210px;
+      border-radius: 12px;
+    }
+
+    .brand-name {
+      font-size: 1.8rem;
       font-weight: 700;
-      letter-spacing: 1.3px;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.4);
-      font-size: 2.4rem;
       color: white;
+      text-align: center;
+      margin-bottom: 50px;
+
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-group {
+      flex: 1;
     }
 
     input[type="text"],
     input[type="password"],
     input[type="email"] {
-      padding: 16px 20px;
+      width: 100%;
+      padding: 18px 20px;
       border: none;
       border-radius: 12px;
-      font-size: 18px;
+      font-size: 16px;
       outline: none;
-      transition: box-shadow 0.5s ease;
-      width: 100%;
-      max-width: 100%;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.1);
       color: #fff;
-      caret-color: #e52e71;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
     }
 
     input[type="text"]::placeholder,
     input[type="password"]::placeholder,
     input[type="email"]::placeholder {
-      color: #ddd;
+      color: #a0a0a0;
     }
 
     input[type="text"]:focus,
     input[type="password"]:focus,
     input[type="email"]:focus {
-      box-shadow: 0 0 18px #b19cd9;
-      background: rgba(255,255,255,0.3);
+      border-color: #8b7cf8;
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 0 3px rgba(139, 124, 248, 0.1);
     }
 
     button {
-      padding: 16px;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      width: 100%;
+      padding: 18px;
+      background: #8b7cf8;
       border: none;
       border-radius: 12px;
       color: white;
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 6px 28px rgba(229, 46, 113, 0.85);
-      transition: background 2.5s ease;
+      transition: all 0.3s ease;
       margin-top: 10px;
+      position: relative;
+      overflow: hidden;
     }
 
     button:hover {
-      background: linear-gradient(90deg, #e52e71, #ff8a00);
+      background: #7c6df0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139, 124, 248, 0.4);
     }
 
-    p {
-      margin-top: 26px;
-      font-size: 15px;
-      color: #f0e9ffcc;
+    button:active {
+      transform: translateY(0);
     }
 
-    p a {
-      color: #ffd6e8;
+    .divider {
+      text-align: center;
+      margin: 30px 0 20px;
+      color: #a0a0a0;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 45%;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .social-btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 30px;
+      color: #a0a0a0;
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: #8b7cf8;
       text-decoration: none;
-      font-weight: 600;
-      transition: color 0.8s ease;
-    }
-
-    p a:hover {
-      color: #ff85a2;
-      text-decoration: underline;
+      font-weight: 500;
     }
 
     /* Style Django form errors */
@@ -187,104 +290,120 @@
       margin-bottom: 12px;
       list-style-type: none;
       color: #ff6b6b;
-      font-weight: 700;
-      font-size: 15px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    /* Hide default Django form labels */
+    form label {
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+      
+      .image-section {
+        height: 40vh;
+      }
+      
+      .login-section {
+        height: 60vh;
+        padding: 40px 20px;
+      }
+      
+      .main-title {
+        font-size: 2.5rem;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 20px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <div id="starfield"></div>
-
-  <div class="login-container" role="main" aria-label="Login form">
-    <div class="logo">
-      <img src="{% static 'assets/images/logoj.png' %}" alt="Brand Logo - check your static path" />
+  <div class="main-container">
+    <!-- Left Image Section -->
+    <div class="image-section">
+      <img class="background-image" id="background-img" alt="Background" />
+      <div class="overlay"></div>
+      <div class="content-overlay">
+        <h1 class="main-title">Capturing Moments,<br>Creating Memories</h1>
+        <div class="dots-indicator">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot active"></div>
+        </div>
+      </div>
     </div>
-    <div class="brand-name">SneekPeek</div>
-    <h2>Login</h2>
-    <form method="post" novalidate>
-      {% csrf_token %}
-      {{ form.as_p }}
-      {% if error %}
-        <p style="color:red;">{{ error }}</p>
-      {% endif %}
 
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required><br><br>
+    <!-- Right Login Section -->
+    <div class="login-section">
+      <div class="login-header">
+        New Here!? <a href="{% url 'login_signup' %}">Sign up</a>
+      </div>
 
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required><br><br>
+      <div class="login-container">
+        <div class="logo">
+          <img src="{% static 'assets/images/logoj.png' %}" alt="SneekPeek Logo" />
+        </div>
+        <div class="brand-name">Login Here!</div>
 
-      <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'login_signup' %}">Sign up here</a></p>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          
+          {% if error %}
+            <p style="color:#ff6b6b;">{{ error }}</p>
+          {% endif %}
+        
+          <!-- Email as username input -->
+          <input type="text" name="username" placeholder="Username" required>
+        
+          <!-- Password input -->
+          <input type="password" name="password" id="password" placeholder="Enter your password" required>
+
+        
+          <!-- Submit button -->
+          <button type="submit">Login</button>
+        </form>
+
+
+      </div>
+    </div>
   </div>
 
   <script>
-    const starfield = document.getElementById('starfield');
-    const stars = [];
-    const starCount = 120;
+    // Shoe images from web
+    const shoeImages = [
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800',
+      'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800',
+      'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800',
+      'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800',
+      'https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=800'
+    ];
 
-    function randomRange(min, max) {
-      return Math.random() * (max - min) + min;
+    const backgroundImg = document.getElementById('background-img');
+    let currentImageIndex = 0;
+
+    function changeBackgroundImage() {
+      backgroundImg.src = shoeImages[currentImageIndex];
+      currentImageIndex = (currentImageIndex + 1) % shoeImages.length;
     }
 
-    class Star {
-      constructor() {
-        this.el = document.createElement('div');
-        this.el.classList.add('star');
-        this.el.style.width = this.el.style.height = `${randomRange(3, 6)}px`;
-        this.x = randomRange(0, window.innerWidth);
-        this.y = randomRange(0, window.innerHeight);
-        this.speedX = randomRange(-0.15, 0.15);
-        this.speedY = randomRange(-0.1, 0.1);
-        this.opacity = randomRange(0.5, 1);
-        this.opacityChange = randomRange(0.002, 0.008);
-        this.el.style.opacity = this.opacity;
-        this.el.style.left = `${this.x}px`;
-        this.el.style.top = `${this.y}px`;
-        starfield.appendChild(this.el);
-      }
+    // Initialize with first image
+    changeBackgroundImage();
 
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+    // Change image every 4 seconds
+    setInterval(changeBackgroundImage, 4000);
 
-        // Keep inside viewport (wrap around)
-        if (this.x > window.innerWidth) this.x = 0;
-        if (this.x < 0) this.x = window.innerWidth;
-        if (this.y > window.innerHeight) this.y = 0;
-        if (this.y < 0) this.y = window.innerHeight;
-
-        // Pulsate opacity
-        this.opacity += this.opacityChange;
-        if (this.opacity >= 1 || this.opacity <= 0.5) {
-          this.opacityChange = -this.opacityChange;
-        }
-        this.el.style.opacity = this.opacity;
-
-        this.el.style.left = `${this.x}px`;
-        this.el.style.top = `${this.y}px`;
-      }
-    }
-
-    for (let i = 0; i < starCount; i++) {
-      stars.push(new Star());
-    }
-
-    function animate() {
-      stars.forEach(star => star.update());
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', () => {
-      stars.forEach(star => {
-        star.x = randomRange(0, window.innerWidth);
-        star.y = randomRange(0, window.innerHeight);
-      });
-    });
-
-    animate();
+    // Handle image loading errors
+    backgroundImg.onerror = function() {
+      this.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800';
+    };
   </script>
 </body>
 </html>

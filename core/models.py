@@ -5,7 +5,6 @@ import datetime
 
 
 
-
 #product model
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -16,9 +15,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-
-
-
+    
 #shipping 
 class WishlistItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,8 +26,7 @@ class WishlistItem(models.Model):
         return self.product.price * self.quantity
 
     def __str__(self):
-        return f"{self.user.username} - {self.product.name} ({self.quantity})"
-
+        return f"{self.user.username} - {self.product.name}"
 
 
 #model for Profile
