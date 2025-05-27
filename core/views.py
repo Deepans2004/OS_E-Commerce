@@ -108,6 +108,7 @@ def product_detail_view(request):
 def cart_view(request):
     return render(request, 'core/cart.html')
 
+@login_required
 def checkout_view(request):
     return render(request, 'core/checkout.html')
 
@@ -117,10 +118,21 @@ def order_complete_view(request):
 @login_required
 def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    wishlist_item, created = WishlistItem.objects.get_or_create(user=request.user, product=product)
+
+    wishlist_item, created = WishlistItem.objects.get_or_create(
+        user=request.user,
+        product=product
+    )
+
     if not created:
+        # If you allow quantity > 1 in wishlist
         wishlist_item.quantity += 1
         wishlist_item.save()
+
+    # Optional: Provide user feedback for better UX
+    messages.success(request, f'"{product.name}" added to your wishlist.')
+
+    # Redirect to wishlist page to see updates immediately
     return redirect('wishlist')
 
 
@@ -134,7 +146,10 @@ def wishlist_page(request):
 @login_required
 def remove_from_wishlist(request, item_id):
     item = get_object_or_404(WishlistItem, id=item_id, user=request.user)
+    product_name = item.product.name  # Save name before deleting
     item.delete()
+
+    messages.success(request, f'"{product_name}" removed from your wishlist.')
     return redirect('wishlist')
 
 
@@ -196,4 +211,5 @@ def product_detail(request, product_id):
 def wishlist_view(request):
     items = WishlistItem.objects.filter(user=request.user)
     return render(request, 'core/wishlist.html', {'items': items})
+
 

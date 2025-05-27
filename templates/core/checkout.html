@@ -1,6 +1,224 @@
+{% load static %}
+
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<style>
+			.intro:hover {
+  color: #1794ca;
+  text-shadow: 0 0 10px rgba(11, 33, 231, 0.7);
+  transform: scale(1.05);
+}
+
+.user-circle-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  padding-left: 10px;
+  margin-top: 8px;
+}
+
+.user-circle-link {
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 50%;
+  filter: brightness(100%);
+  border: 2px solid #ccc;
+}
+
+.user-circle-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  filter: brightness(80%);
+  border: 2px solid #1194cd;
+}
+
+.user-circle-img {
+  height: 62px;
+  width: 62px;
+  border-radius: 60%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  transition: border 0.3s ease;
+}
+
+.user-circle-img:hover {
+  border-color: #888;
+}
+
+/* Form Styling */
+.checkout-form-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border-left: 4px solid #1794ca;
+}
+
+.order-summary h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.order-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-summary li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+  color: #555;
+}
+
+.order-summary li:last-child {
+  border-bottom: none;
+}
+
+.checkout-form h2 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.checkout-form fieldset {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 25px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.checkout-form fieldset:hover {
+  border-color: #1794ca;
+  box-shadow: 0 2px 10px rgba(23, 148, 202, 0.1);
+  background: white;
+}
+
+.checkout-form legend {
+  color: #333;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+.checkout-form label {
+  display: block;
+  margin-bottom: 15px;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.checkout-form input[type="text"],
+.checkout-form input[type="email"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+  margin-top: 5px;
+}
+
+.checkout-form input[type="text"]:focus,
+.checkout-form input[type="email"]:focus {
+  outline: none;
+  border-color: #1794ca;
+  box-shadow: 0 0 0 3px rgba(23, 148, 202, 0.1);
+  transform: translateY(-1px);
+}
+
+.checkout-form input[type="text"]:hover,
+.checkout-form input[type="email"]:hover {
+  border-color: #999;
+}
+
+.checkout-form input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  accent-color: #1794ca;
+}
+
+.checkout-form label:has(input[type="radio"]) {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.checkout-form label:has(input[type="radio"]):hover {
+  border-color: #1794ca;
+  background: #f8f9ff;
+  transform: translateX(3px);
+}
+
+.checkout-form label:has(input[type="radio"]:checked) {
+  border-color: #1794ca;
+  background: #e3f2fd;
+  box-shadow: 0 2px 8px rgba(23, 148, 202, 0.2);
+}
+
+.checkout-form button[type="submit"] {
+  width: 100%;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #1794ca, #0d7db8);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.checkout-form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #0d7db8, #0a6ba3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(23, 148, 202, 0.3);
+}
+
+.checkout-form button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(23, 148, 202, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .checkout-form-container {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .checkout-form fieldset {
+    padding: 20px;
+  }
+}
+		</style>
 	<title>Footwear - Free Bootstrap 4 Template by Colorlib</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,32 +226,27 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
 	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Ion Icon Fonts-->
-	<link rel="stylesheet" href="css/ionicons.min.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
-
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
-
-	<!-- Owl Carousel -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	
-	<!-- Date Picker -->
-	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-	<!-- Flaticons  -->
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+<!-- Animate.css -->
+<link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="{% static 'assets/css/icomoon.css' %}">
+<!-- Ion Icon Fonts-->
+<link rel="stylesheet" href="{% static 'assets/css/ionicons.min.css' %}">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- Magnific Popup --> 
+<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+<!-- Flexslider -->
+<link rel="stylesheet" href="{% static 'assets/css/flexslider.css' %}">
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+<!-- Date Picker -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap-datepicker.css' %}">
+<!-- Flaticons -->
+<link rel="stylesheet" href=" {% static 'assets/fonts/flaticon/font/flaticon.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
 	</head>
 	<body>
@@ -42,11 +255,17 @@
 
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
+			<li class="user-circle-wrapper">
+				<a href="{% url 'profile' %}" class="user-circle-link">
+				  <img src="{% static 'assets/images/user.webp' %}" alt="User" class="user-circle-img">
+				  
+				</a>
+			  </li>
 			<div class="top-menu">
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-7 col-md-9">
-							<div id="colorlib-logo"><a href="index.html">Footwear</a></div>
+							<div id="colorlib-logo"><a href="#">Checkout</a></div>
 						</div>
 						<div class="col-sm-5 col-md-3">
 			            <form action="#" class="search-wrap">
@@ -60,22 +279,22 @@
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li class="has-dropdown active">
-									<a href="men.html">Men</a>
-									<ul class="dropdown">
-										<li><a href="product-detail.html">Product Detail</a></li>
-										<li><a href="cart.html">Shopping Cart</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="order-complete.html">Order Complete</a></li>
-										<li><a href="add-to-wishlist.html">Wishlist</a></li>
-									</ul>
+								<li><a href="temmplates\core\index.html">Ｈｏｍｅ</a></li>
+								<li class="has-dropdown">
+								<a href="{% url 'men' %}">Ｓｈｏｐ</a>
+								<ul class="dropdown">
+								<li><a href="{% url 'product-detail' %}">Product Detail</a></li>
+								<li><a href="{% url 'cart' %}">Shopping cart</a></li>
+								<li class="active"><a href="{% url 'checkout' %}">Checkout</a></li>
+								<li><a href="{% url 'order-complete' %}">Order Completed</a></li>
+								<!-- <li><a href="add-to-wishlist.html">Add to Wishlist</a></li> -->
+								</ul>
 								</li>
-								<li><a href="women.html">Women</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
-							</ul>
+								
+								<li><a href="{% url 'about' %}">Ａｂｏｕｔ</a></li>
+								<li><a href="{% url 'contact' %}">Ｃｏｎｔａｃｔ</a></li>
+								<li class="cart"><a href="{% url 'wishlist'  %}">Wishlist |  <i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								</ul>
 						</div>
 					</div>
 				</div>
@@ -114,294 +333,168 @@
 			</div>
 		</div>
 
-
-		<div class="colorlib-product">
-			<div class="container">
-				<div class="row row-pb-lg">
-					<div class="col-sm-10 offset-md-1">
-						<div class="process-wrap">
-							<div class="process text-center active">
-								<p><span>01</span></p>
-								<h3>Shopping Cart</h3>
-							</div>
-							<div class="process text-center active">
-								<p><span>02</span></p>
-								<h3>Checkout</h3>
-							</div>
-							<div class="process text-center">
-								<p><span>03</span></p>
-								<h3>Order Complete</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-8">
-						<form method="post" class="colorlib-form">
-							<h2>Billing Details</h2>
-		              	<div class="row">
-			               <div class="col-md-12">
-			                  <div class="form-group">
-			                  	<label for="country">Select Country</label>
-			                     <div class="form-field">
-			                     	<i class="icon icon-arrow-down3"></i>
-			                        <select name="people" id="people" class="form-control">
-				                      	<option value="#">Select country</option>
-				                        <option value="#">Alaska</option>
-				                        <option value="#">China</option>
-				                        <option value="#">Japan</option>
-				                        <option value="#">Korea</option>
-				                        <option value="#">Philippines</option>
-			                        </select>
-			                     </div>
-			                  </div>
-			               </div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="fname">First Name</label>
-										<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="lname">Last Name</label>
-										<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="companyname">Company Name</label>
-			                    	<input type="text" id="companyname" class="form-control" placeholder="Company Name">
-			                  </div>
-			               </div>
-
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="fname">Address</label>
-			                    	<input type="text" id="address" class="form-control" placeholder="Enter Your Address">
-			                  </div>
-			                  <div class="form-group">
-			                    	<input type="text" id="address2" class="form-control" placeholder="Second Address">
-			                  </div>
-			               </div>
-			            
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="companyname">Town/City</label>
-			                    	<input type="text" id="towncity" class="form-control" placeholder="Town or City">
-			                  </div>
-			               </div>
-			            
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="stateprovince">State/Province</label>
-										<input type="text" id="fname" class="form-control" placeholder="State Province">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="lname">Zip/Postal Code</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
-									</div>
-								</div>
-							
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="email">E-mail Address</label>
-										<input type="text" id="email" class="form-control" placeholder="State Province">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="Phone">Phone Number</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="">
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<div class="radio">
-										  <label><input type="radio" name="optradio"> Create an Account? </label>
-										  <label><input type="radio" name="optradio"> Ship to different address</label>
-										</div>
-									</div>
-								</div>
-		               </div>
-		            </form>
-					</div>
-
-					<div class="col-lg-4">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="cart-detail">
-									<h2>Cart Total</h2>
-									<ul>
-										<li>
-											<span>Subtotal</span> <span>$100.00</span>
-											<ul>
-												<li><span>1 x Product Name</span> <span>$99.00</span></li>
-												<li><span>1 x Product Name</span> <span>$78.00</span></li>
-											</ul>
-										</li>
-										<li><span>Shipping</span> <span>$0.00</span></li>
-										<li><span>Order Total</span> <span>$180.00</span></li>
-									</ul>
-								</div>
-						   </div>
-
-						   <div class="w-100"></div>
-
-						   <div class="col-md-12">
-								<div class="cart-detail">
-									<h2>Payment Method</h2>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio"> Direct Bank Tranfer</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio"> Check Payment</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio"> Paypal</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="checkbox">
-											   <label><input type="checkbox" value=""> I have read and accept the terms and conditions</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<p><a href="#" class="btn btn-primary">Place an order</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div class="checkout-form-container">
+			<div class="order-summary">
+				<h2>Order Summary</h2>
 			</div>
+
+			<form method="post" class="checkout-form">
+				{% csrf_token %}
+				<h2>Enter your details</h2>
+				
+				<fieldset>
+					<legend>Personal Information</legend>
+					<label>Full Name: <input type="text" name="full_name" required></label>
+					<label>Email: <input type="email" name="email" required></label>
+					<label>Phone: <input type="text" name="phone" required></label>
+				</fieldset>
+
+				<fieldset>
+					<legend>Shipping Address</legend>
+					<label>Address Line 1: <input type="text" name="address_line1" required></label>
+					<label>Address Line 2: <input type="text" name="address_line2"></label>
+					<label>City: <input type="text" name="city" required></label>
+					<label>State: <input type="text" name="state" required></label>
+					<label>Zip Code: <input type="text" name="zip_code" required></label>
+					<label>Country: <input type="text" name="country" required></label>
+				</fieldset>
+
+				<fieldset>
+					<legend>Payment Method</legend>
+					<label><input type="radio" name="payment_method" value="credit_card" required> Credit Card</label>
+					<label><input type="radio" name="payment_method" value="paypal"> PayPal</label>
+					<label><input type="radio" name="payment_method" value="cod"> Cash on Delivery</label>
+				</fieldset>
+
+				<button type="submit">Place Order</button>
+			</form>
 		</div>
 
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
-				<div class="row row-pb-md">
-					<div class="col footer-col colorlib-widget">
-						<h4>About Footwear</h4>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-						<p>
-							<ul class="colorlib-social-icons">
-								<li><a href="#"><i class="icon-twitter"></i></a></li>
-								<li><a href="#"><i class="icon-facebook"></i></a></li>
-								<li><a href="#"><i class="icon-linkedin"></i></a></li>
-								<li><a href="#"><i class="icon-dribbble"></i></a></li>
-							</ul>
-						</p>
-					</div>
-					<div class="col footer-col colorlib-widget">
-						<h4>Customer Care</h4>
-						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="#">Contact</a></li>
-								<li><a href="#">Returns/Exchange</a></li>
-								<li><a href="#">Gift Voucher</a></li>
-								<li><a href="#">Wishlist</a></li>
-								<li><a href="#">Special</a></li>
-								<li><a href="#">Customer Services</a></li>
-								<li><a href="#">Site maps</a></li>
-							</ul>
-						</p>
-					</div>
-					<div class="col footer-col colorlib-widget">
-						<h4>Information</h4>
-						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="#">About us</a></li>
-								<li><a href="#">Delivery Information</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Support</a></li>
-								<li><a href="#">Order Tracking</a></li>
-							</ul>
-						</p>
-					</div>
-
-					<div class="col footer-col">
-						<h4>News</h4>
-						<ul class="colorlib-footer-links">
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="#">Press</a></li>
-							<li><a href="#">Exhibitions</a></li>
-						</ul>
-					</div>
-
-					<div class="col footer-col">
-						<h4>Contact Information</h4>
-						<ul class="colorlib-footer-links">
-							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
-							<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
-							<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-							<li><a href="#">yoursite.com</a></li>
-						</ul>
-					</div>
-				</div>
+			<div class="row row-pb-md">
+			<div class="col footer-col colorlib-widget">
+			<h4>About Footwear</h4>
+			<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+			<p>
+			<ul class="colorlib-social-icons">
+			<li><a href="#"><i class="icon-twitter"></i></a></li>
+			<li><a href="#"><i class="icon-facebook"></i></a></li>
+			<li><a href="#"><i class="icon-linkedin"></i></a></li>
+			<li><a href="#"><i class="icon-dribbble"></i></a></li>
+			</ul>
+			</p>
+			</div>
+			<div class="col footer-col colorlib-widget">
+			<h4>Customer Care</h4>
+			<p>
+			<ul class="colorlib-footer-links">
+			<li><a href="{% url 'contact' %}">Contact</a></li>
+			<li><a href="{% url 'checkout' %}">Returns/Exchange</a></li>
+			<li><a href="#">Gift Voucher</a></li>   
+			<li><a href="{% url 'wishlist' %}">Wishlist/Cart</a></li>
+			<li><a href="{% url 'men' %}">Special</a></li>
+			<li><a href="{% url 'contact' %}">Customer Services</a></li>
+			<li><a href="#">Site maps</a></li>
+			</ul>
+			</p>
+			</div>
+			<div class="col footer-col colorlib-widget">
+			<h4>Information</h4>
+			<p>
+			<ul class="colorlib-footer-links">
+			<li><a href="{% url 'about' %}">About us</a></li>
+			<li><a href="{% url 'checkout' %}">Delivery Information</a></li>
+			<li><a href="{% url 'terms_conditions_page' %}">Privacy Policy</a></li>
+			<li><a href="{% url 'contact' %}">Support</a></li>
+			<li><a href="#">Order Tracking</a></li>
+			</ul>
+			</p>
+			</div>
+			
+			<div class="col footer-col">
+			<h4>News</h4>
+			<ul class="colorlib-footer-links">
+			<li><a href="#">Blog</a></li>
+			<li><a href="#">Press</a></li>
+			<li><a href="#">Exhibitions</a></li>
+			</ul>
+			</div>
+			
+			<div class="col footer-col">
+			<h4>Contact Information</h4>
+			<ul class="colorlib-footer-links">
+			<li>Graphic Era hill university, <br> Bhimtal, Uttarakhand</li>
+			<li><a href="#">+91 1234567890</a></li>
+			<li><a href="#">info@Sneekpeek.com</a></li>
+			<li><a href="{% url 'about' %}">Sneekpeek.com</a></li>
+			</ul>
+			</div>
+			</div>
 			</div>
 			<div class="copy">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<p>
-							<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
-							<span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
-						</p>
-					</div>
-				</div>
+			<div class="row">
+			<div class="col-sm-12 text-center">
+			<p>
+			<!-- n class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span> -->
+			</p>
 			</div>
-		</footer>
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
-	</div>
-	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-   <!-- popper -->
-   <script src="js/popper.min.js"></script>
-   <!-- bootstrap 4.1 -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- jQuery easing -->
-   <script src="js/jquery.easing.1.3.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Main -->
-	<script src="js/main.js"></script>
-
-	</body>
-</html>
-
+			</div>
+			</div>
+			</footer>
+			</div>
+			
+			<div class="gototop js-top">
+			<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+			</div>
+			
+			<!-- jQuery -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<!-- popper -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<!-- bootstrap 4.1 -->
+			<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+			
+			<!-- jQuery easing -->
+			<script src="{% static 'assets/js/jquery.easing.1.3.js' %}"></script>
+			
+			<!--Alert-->
+			
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+			
+			<!-- Waypoints -->
+			<script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+			<!-- Flexslider -->
+			<script src="{% static 'assets/js/jquery.flexslider-min.js' %}"></script>
+			<!-- Owl carousel -->
+			<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+			<!-- Magnific Popup -->
+			<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+			<script src="{% static 'assets/js/magnific-popup-options.js' %}"></script>
+			<!-- Date Picker -->
+			<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+			<!-- Stellar Parallax -->
+			<script src="{% static 'assets/js/jquery.Stellar.min.js' %}"></script>
+			<!-- Main -->
+			<script src="{% static 'assets/js/main.js' %}"></script>
+			
+			<script>
+			  if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+				  navigator.serviceWorker.register('/static/assets/js/sw.js')
+					.then(reg => {
+					  console.log('Service Worker registered:', reg);
+					})
+					.catch(err => {
+					  console.log('Service Worker registration failed:', err);
+					});
+				});
+			  }
+			  </script>
+			
+			  
+			<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script src="{% static 'assets/js/ajax-load.js' %}"></script> -->
+			
+			</body>
+			</html>
