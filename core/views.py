@@ -12,7 +12,6 @@ from django.http import JsonResponse
 from .models import Product, WishlistItem
 
 
-
 # ----------------------------
 # Home Page (Protected)
 # ----------------------------
@@ -117,18 +116,12 @@ def order_complete_view(request):
 
 @login_required
 def add_to_wishlist(request, product_id):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        product = Product.objects.get(id=product_id)
-        user = request.user
-
-        cart_item, created = WishlistItem.objects.get_or_create(user=user, product=product)
-        if not created:
-            cart_item.quantity += 1
-            cart_item.save()
-
-        return JsonResponse({'status': 'success', 'message': 'Product added to cart'})
-    return JsonResponse({'status': 'fail', 'message': 'Invalid request'})
+    product = get_object_or_404(Product, id=product_id)
+    wishlist_item, created = WishlistItem.objects.get_or_create(user=request.user, product=product)
+    if not created:
+        wishlist_item.quantity += 1
+        wishlist_item.save()
+    return redirect('wishlist')
 
 
 @login_required
@@ -171,6 +164,11 @@ def edit_profile_view(request):
 
 def offline_view(request):
     return render(request, 'core/offline.html')
+
+
+
+def feedback_view(request):
+    return render(request, 'core/feedback.html')
 
 
 def about(request):

@@ -300,7 +300,7 @@
 								</li>
 								<li><a href="{% url 'about' %}">Ａｂｏｕｔ</a></li>
 								<li><a href="{% url 'contact' %}">Ｃｏｎｔａｃｔ</a></li>
-								<li class="cart"><a href="{% url 'cart' %}">Wishlist |<i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li class="cart"><a href="{% url 'wishlist'  %}">Wishlist |  <i class="icon-shopping-cart"></i> Cart [0]</a></li>
 							</ul>
 						</div>
 					</div>
@@ -431,7 +431,7 @@
 	<li><a href="{% url 'contact' %}">Contact</a></li>
 	<li><a href="{% url 'checkout' %}">Returns/Exchange</a></li>
 	<li><a href="#">Gift Voucher</a></li>
-	<li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+	<li><a href="{% url 'wishlist' %}">Wishlist/Cart</a></li>
 	<li><a href="{% url 'men' %}">Special</a></li>
 	<li><a href="{% url 'contact' %}">Customer Services</a></li>
 	<li><a href="#">Site maps</a></li>
@@ -527,50 +527,6 @@
 	}
 	</script>
 
-<script>
-	function getCSRFToken() {
-    const name = 'csrftoken';
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        if (cookie.trim().startsWith(name + '=')) {
-            return decodeURIComponent(cookie.trim().substring(name.length + 1));
-        }
-    }
-    return null;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    const links = document.querySelectorAll('.add-to-wishlist');
-
-    links.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();  // 🚫 Stop page reload
-
-            const productId = this.getAttribute('data-product-id');
-            const url = `/add-to-wishlist/${productId}/`;
-            const csrfToken = getCSRFToken();
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': csrfToken
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success' || data.status === 'exists') {
-                    document.getElementById('wishlist-message').innerText = data.message;
-                } else {
-                    document.getElementById('wishlist-message').innerText = 'Failed to add.';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    });
-});
-	</script>
 
 	</body>
 </html>

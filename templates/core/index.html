@@ -209,7 +209,7 @@
 
 <li><a href="{% url 'about' %}">Ａｂｏｕｔ</a></li>
 <li><a href="{% url 'contact' %}">Ｃｏｎｔａｃｔ</a></li>
-<li class="cart"><a href="{% url 'cart' %}">Wishlist |  <i class="icon-shopping-cart"></i> Cart [0]</a></li>
+<li class="cart"><a href="{% url 'wishlist'  %}">Wishlist |  <i class="icon-shopping-cart"></i> Cart [0]</a></li>
 </ul>
 </div>
 </div>
@@ -378,10 +378,8 @@
 <ul class="colorlib-footer-links">
 <li><a href="{% url 'contact' %}">Contact</a></li>
 <li><a href="{% url 'checkout' %}">Returns/Exchange</a></li>
-<li><a href="#">Gift Voucher</a></li>
-{% for product in products %}
-  <a href="{% url 'add-to-wishlist' product.id %}">Add to Wishlist</a>
-{% endfor %}
+<li><a href="#">Gift Voucher</a></li>   
+<li><a href="{% url 'wishlist' %}">Wishlist/Cart</a></li>
 <li><a href="{% url 'men' %}">Special</a></li>
 <li><a href="{% url 'contact' %}">Customer Services</a></li>
 <li><a href="#">Site maps</a></li>

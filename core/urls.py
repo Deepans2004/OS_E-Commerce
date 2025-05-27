@@ -28,6 +28,7 @@ urlpatterns = [
     path('wishlist/', views.wishlist_page, name='wishlist'),
     path('remove-from-wishlist/<int:item_id>/', views.remove_from_wishlist, name='remove_from_wishlist'),
     path('terms-conditions/', views.terms_conditions_page, name='terms-conditions'),
+    path('feedback/', views.feedback_view, name='feedback'),
 
     #buying product
     

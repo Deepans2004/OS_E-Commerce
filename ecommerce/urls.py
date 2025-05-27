@@ -35,6 +35,7 @@ urlpatterns = [
     path('wishlist/', views.wishlist_page, name='wishlist'),
     path('remove-from-wishlist/<int:item_id>/', views.remove_from_wishlist, name='remove_from_wishlist'),
     path('terms-conditions/', views.terms_conditions_page, name='terms_conditions_page'),
+    path('feedback/', views.feedback_view, name='feedback'),
 
     # Profile & Orders (require login)
     path('profile/', views.profile_view, name='profile'),

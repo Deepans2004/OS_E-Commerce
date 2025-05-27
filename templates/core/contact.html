@@ -248,7 +248,7 @@ h3 {
 		<div class="row">
 		<div class="col-sm-12 text-left menu-1">
 		<ul>
-		<li class="active"><a href="{% url 'index' %}">Ｈｏｍｅ</a></li>
+		<li><a href="{% url 'index' %}">Ｈｏｍｅ</a></li>
 		<li class="has-dropdown">
 		<a href="{% url 'men' %}">Ｓｈｏｐ</a>
 		<ul class="dropdown">
@@ -261,8 +261,8 @@ h3 {
 		</li>
 		
 		<li><a href="{% url 'about' %}">Ａｂｏｕｔ</a></li>
-		<li><a href="{% url 'contact' %}">Ｃｏｎｔａｃｔ</a></li>
-		<li class="cart"><a href="{% url 'cart' %}">Wishlist |  <i class="icon-shopping-cart"></i> Cart [0]</a></li>
+		<li  class="active"><a href="{% url 'contact' %}">Ｃｏｎｔａｃｔ</a></li>
+		<li class="cart"><a href="{% url 'wishlist'  %}">Wishlist |  <i class="icon-shopping-cart"></i> Cart [0]</a></li>
 		</ul>
 		</div>
 		</div>
@@ -366,7 +366,7 @@ h3 {
 									<div class="w-100"></div>
 									<div class="col-sm-12">
 										<div class="form-group">
-											<input type="submit" value="Send Message" class="btn btn-primary">
+											<a href="{% url 'feedback' %}" class="btn btn-primary">Send Message</a>
 										</div>
 									</div>
 								</div>
@@ -402,7 +402,7 @@ h3 {
 			<li><a href="{% url 'contact' %}">Contact</a></li>
 			<li><a href="{% url 'checkout' %}">Returns/Exchange</a></li>
 			<li><a href="#">Gift Voucher</a></li>
-			<li><a href="{% url 'add-to-wishlist' %}">Wishlist</a></li>
+			<li><a href="{% url 'wishlist' %}">Wishlist/Cart</a></li>
 			<li><a href="{% url 'men' %}">Special</a></li>
 			<li><a href="{% url 'contact' %}">Customer Services</a></li>
 			<li><a href="#">Site maps</a></li>

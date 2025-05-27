@@ -109,12 +109,12 @@
 										<li><a href="{% url 'cart' %}">Shopping Cart</a></li>
 										<li><a href="{% url 'checkout' %}">Checkout</a></li>
 										<li><a href="{% url 'order-complete' %}">Order Complete</a></li>
-										<li><a href="{% url 'add-to-wishlist' %}">Wishlist</a></li>
+										<li><a href="{% url 'wishlist' %}">Wishlist</a></li>
 									</ul>
 								</li>
 								<li class="active"><a href="{% url 'about' %}">Ａｂｏｕｔ</a></li>
 								<li><a href="{% url 'contact' %}">Ｃｏｎｔａｃｔ</a></li>
-								<li class="cart"><a href="{% url 'cart' %}">Wishlist |<i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li class="cart"><a href="{% url 'wishlist'  %}">Wishlist |  <i class="icon-shopping-cart"></i> Cart [0]</a></li>
 							</ul>
 						</div>
 					</div>
@@ -197,7 +197,7 @@
 			<li><a href="{% url 'contact' %}">Contact</a></li>
 			<li><a href="{% url 'checkout' %}">Returns/Exchange</a></li>
 			<li><a href="#">Gift Voucher</a></li>
-			<li><a href="{% url 'add-to-wishlist' %}">Wishlist</a></li>
+			<li><a href="{% url 'wishlist' %}">Wishlist/Cart</a></li>
 			<li><a href="{% url 'men' %}">Special</a></li>
 			<li><a href="{% url 'contact' %}">Customer Services</a></li>
 			<li><a href="#">Site maps</a></li>
